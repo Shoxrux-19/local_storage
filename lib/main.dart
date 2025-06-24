@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:local_storage/services/cashe_helper.dart';
-import 'package:local_storage/view/screens/sign_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:local_storage/view/screens/gender_screen.dart';
+import 'package:local_storage/view/screens/signin_screen.dart';
+import 'package:local_storage/view/screens/splash_screen.dart';
 
 void main(List<String> args) async {
-  WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  await CasheHelper.init();
   return runApp(MyApp());
 }
 
@@ -15,6 +12,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: SignInScreen());
+    return MaterialApp(
+      routes: {
+        "/": (_) => SplashScreen(),
+        "/splash": (_) => SplashScreen(),
+        "/gender": (_) => GenderScreen(),
+        "/signin": (_) => SigninScreen(),
+      },
+
+      debugShowCheckedModeBanner: false
+    
+    );
   }
 }
